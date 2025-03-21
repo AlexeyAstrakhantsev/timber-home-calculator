@@ -1,10 +1,19 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Phone, Mail, MapPin, Clock, Building } from 'lucide-react';
 
+// Define Google Maps types
+declare global {
+  interface Window {
+    initMap: () => void;
+    google: any;
+  }
+}
+
 const Map = () => {
   const [mapLoaded, setMapLoaded] = useState(false);
+  const mapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Load Google Maps script dynamically
@@ -22,13 +31,25 @@ const Map = () => {
       
       document.head.appendChild(script);
     }
+
+    // Clean up function
+    return () => {
+      const script = document.getElementById('google-maps-script');
+      if (script) {
+        document.head.removeChild(script);
+      }
+      // Remove the global callback
+      if (window.initMap) {
+        delete window.initMap;
+      }
+    };
   }, []);
 
   useEffect(() => {
-    if (mapLoaded) {
+    if (mapLoaded && mapRef.current && window.google) {
       try {
         // Create the map
-        const map = new google.maps.Map(document.getElementById('map') as HTMLElement, {
+        const map = new window.google.maps.Map(mapRef.current, {
           center: { lat: 51.834, lng: 107.584 }, // Coordinates for Ulan-Ude
           zoom: 14,
           styles: [
@@ -51,14 +72,14 @@ const Map = () => {
         });
         
         // Add marker for company location
-        const marker = new google.maps.Marker({
+        const marker = new window.google.maps.Marker({
           position: { lat: 51.834, lng: 107.584 },
           map: map,
           title: 'ЭкоДом Байкал'
         });
         
         // Add info window
-        const infowindow = new google.maps.InfoWindow({
+        const infowindow = new window.google.maps.InfoWindow({
           content: '<div style="padding: 10px;"><strong>ЭкоДом Байкал</strong><br>Строительство домов из бруса</div>'
         });
         
@@ -128,7 +149,7 @@ const Map = () => {
       </Card>
       
       <div className="lg:col-span-2 h-[400px] rounded-lg overflow-hidden relative">
-        <div id="map" className="w-full h-full bg-slate-200">
+        <div id="map" ref={mapRef} className="w-full h-full bg-slate-200">
           {!mapLoaded && (
             <div className="absolute inset-0 flex items-center justify-center bg-slate-200">
               <div className="text-center">
