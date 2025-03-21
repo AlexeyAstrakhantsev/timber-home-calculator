@@ -20,26 +20,26 @@ const Hero = () => {
       id="home"
       className="relative min-h-[100vh] flex items-center justify-center bg-cover bg-center pt-16"
       style={{ 
-        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url("https://images.unsplash.com/photo-1518546305927-5a555bb7020d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2669&q=80")'
+        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url("https://postroisvoidom03.ru/static/img/slider/home-slider-1.jpg")'
       }}
     >
       <div className="container mx-auto px-4 py-20 md:py-28 lg:py-32 text-center">
         <AnimatedSection animation="fade-in-down">
           <div className="inline-block mb-6 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full border border-white/30 text-white">
-            <span>Строительство из экологичного материала в Улан-Удэ</span>
+            <span>Строительство домов из бруса в Улан-Удэ</span>
           </div>
         </AnimatedSection>
         
         <AnimatedSection animation="fade-in" delay={200}>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 text-white leading-tight">
-            Дома из бруса <br />
-            с заботой о вашем будущем
+            Строительство домов<br />
+            из бруса под ключ
           </h1>
         </AnimatedSection>
         
         <AnimatedSection animation="fade-in-up" delay={400}>
           <p className="text-xl md:text-2xl text-white/90 mb-12 max-w-3xl mx-auto">
-            Мы строим качественные деревянные дома, которые прослужат поколениям, сохраняя тепло и уют вашей семьи
+            Постройте свой идеальный дом из экологически чистых материалов с нашей опытной командой строителей
           </p>
         </AnimatedSection>
         
