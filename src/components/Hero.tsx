@@ -20,7 +20,7 @@ const Hero = () => {
       id="home"
       className="relative min-h-[100vh] flex items-center justify-center bg-cover bg-center pt-16"
       style={{ 
-        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url("https://postroisvoidom03.ru/static/img/slider/home-slider-1.jpg")'
+        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url("/lovable-uploads/b074b425-bfed-4a5f-ae07-d9d57d689333.png")'
       }}
     >
       <div className="container mx-auto px-4 py-20 md:py-28 lg:py-32 text-center">
